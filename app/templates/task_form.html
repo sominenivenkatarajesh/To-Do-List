@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add / Edit Task</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Add / Edit Task</h1>
+
+<form method="post" class="task-form">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <div class="form-buttons">
+        <button class="btn add" type="submit">Save</button>
+
+        {% if object %}
+            <a class="btn delete" href="{% url 'task-delete' object.pk %}">
+                Delete
+            </a>
+        {% endif %}
+
+        <a class="btn edit" href="{% url 'task-list' %}">
+            Back
+        </a>
+    </div>
+</form>
+
+</div>
+
+</body>
+</html>

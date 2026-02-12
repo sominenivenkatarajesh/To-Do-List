@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>To-Do Manager</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+
+    <header>
+        <h1 style="text-align:center">To-Do Manager</h1>
+    </header>
+
+    <nav style="text-align:center">
+        <a href="{% url 'task-list' %}">Home</a>
+        <a href="{% url 'task-add' %}">Add Task</a>
+        <a href="{% url 'category-add' %}">Add Category</a>
+    </nav>
+
+    <div class="container" >
+        {% block content %}
+        {% endblock %}
+    </div>
+
+</body>
+</html>

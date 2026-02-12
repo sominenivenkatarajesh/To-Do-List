@@ -1,0 +1,150 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f9;
+    margin: 0;
+    padding: 40px;
+}
+
+.container {
+    background: white;
+    padding: 30px;
+    max-width: 900px;
+    margin: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.btn {
+    padding: 6px 12px;
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    margin-left: 5px;
+}
+
+.add {
+    background: #4CAF50;
+}
+
+.edit {
+    background: #2196F3;
+}
+
+.delete {
+    background: #f44336;
+}
+
+.btn:hover {
+    opacity: 0.85;
+}
+
+.task-list {
+    list-style: none;
+    padding: 0;
+}
+
+.task-item {
+    background: #eef1f6;
+    padding: 10px;
+    margin-bottom: 8px;
+    border-radius: 6px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.done {
+    text-decoration: line-through;
+    color: gray;
+}
+
+.category-box {
+    background: #f7f8fb;
+    padding: 10px;
+    margin-bottom: 12px;
+    border-radius: 6px;
+}
+
+.top-buttons {
+    margin-bottom: 15px;
+}
+
+.task-form {
+    margin-top: 20px;
+}
+
+.task-form input,
+.task-form textarea,
+.task-form select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 12px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.form-buttons {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+}
+/* ===== DELETE PAGE ===== */
+.delete-box {
+    background: white;
+    padding: 30px;
+    width: 350px;
+    margin: 80px auto;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.delete-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+/* ===== FORM BOX (Add/Edit pages) ===== */
+.form-box {
+    background: white;
+    padding: 30px;
+    width: 380px;
+    margin: 80px auto;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group input {
+    width: 90%;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    margin-top: 5px;
+}
+
+.btn {
+    padding: 8px 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    margin: 5px;
+    display: inline-block;
+    color: white;
+}
+
+.save {
+    background: #28a745;
+}
+
+.back {
+    background: #6c757d;
+}
