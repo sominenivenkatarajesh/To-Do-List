@@ -1,31 +1,22 @@
-{% load static %}
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Delete Task</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
+{% extends "base.html" %}
 
-<body>
+{% block content %}
 
-<div class="container delete-box">
-
-    <h2>Delete Task?</h2>
-
-    <p class="delete-title">{{ object.title }}</p>
+<div class="container" style="max-width: 500px; margin: 4rem auto; text-align: center;">
+    <div style="background: rgba(236, 72, 153, 0.1); width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--secondary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg>
+    </div>
+    
+    <h2 style="border: none; margin-bottom: 0.5rem;">Confirm Removal</h2>
+    <p style="color: var(--text-dim); margin-bottom: 2rem;">Are you sure you want to delete "<span style="color: var(--text-main); font-weight: 600;">{{ object.title }}</span>"? This action cannot be undone.</p>
 
     <form method="post">
         {% csrf_token %}
-        <button type="submit" class="btn delete">
-            Confirm Delete
-        </button>
-
-        <a href="{% url 'task-list' %}" class="btn edit">
-            Cancel
-        </a>
+        <div style="display: flex; gap: 1rem; justify-content: center;">
+            <a href="{% url 'task-list' %}" class="btn btn-outline">Keep Task</a>
+            <button type="submit" class="btn btn-danger">Delete Permanently</button>
+        </div>
     </form>
-
 </div>
 
-</body>
-</html>
+{% endblock %}

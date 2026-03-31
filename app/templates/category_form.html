@@ -1,34 +1,33 @@
-{% load static %}
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Add Category</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
+{% extends "base.html" %}
 
-<body>
+{% block content %}
 
-<div class="container form-box">
+<header>
+    <div>
+        <h1 class="page-title">New Category</h1>
+        <p style="color: var(--text-dim); font-size: 0.9rem;">Organize your work into distinct operational sectors.</p>
+    </div>
+</header>
 
-    <h2>Add Category</h2>
-
+<div class="form-card" style="max-width: 500px;">
     <form method="post">
         {% csrf_token %}
+        
+        {% for field in form %}
+            <div class="form-group">
+                <label class="nav-label" style="margin-bottom: 0.5rem; display: block;" for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                {% for error in field.errors %}
+                    <div style="color: var(--urgent); font-size: 0.8rem; margin-top: -1rem; margin-bottom: 1.5rem;">{{ error }}</div>
+                {% endfor %}
+            </div>
+        {% endfor %}
 
-        <div class="form-group">
-            {{ form.as_p }}
+        <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+            <button type="submit" class="btn btn-primary" style="flex: 1; justify-content: center;">Initialize Category</button>
+            <a href="{% url 'task-list' %}" class="btn" style="background: var(--surface); color: var(--text-main); border: 1px solid var(--border);">Cancel</a>
         </div>
-
-        <button type="submit" class="btn save">
-            Save
-        </button>
-
-        <a href="{% url 'task-list' %}" class="btn back">
-            Back
-        </a>
     </form>
-
 </div>
 
-</body>
-</html>
+{% endblock %}

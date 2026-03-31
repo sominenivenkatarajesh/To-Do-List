@@ -1,37 +1,38 @@
-{% load static %}
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Add / Edit Task</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
+{% extends "base.html" %}
 
-<body>
+{% block content %}
 
-<div class="container">
-
-<h1>Add / Edit Task</h1>
-
-<form method="post" class="task-form">
-    {% csrf_token %}
-    {{ form.as_p }}
-
-    <div class="form-buttons">
-        <button class="btn add" type="submit">Save</button>
-
-        {% if object %}
-            <a class="btn delete" href="{% url 'task-delete' object.pk %}">
-                Delete
-            </a>
-        {% endif %}
-
-        <a class="btn edit" href="{% url 'task-list' %}">
-            Back
-        </a>
+<header>
+    <div>
+        <h1 class="page-title">{% if object %}Edit Objective{% else %}New Objective{% endif %}</h1>
+        <p style="color: var(--text-dim); font-size: 0.9rem;">Define the parameters for your next milestone.</p>
     </div>
-</form>
+</header>
 
+<div class="form-card">
+    <form method="post">
+        {% csrf_token %}
+        
+        {% for field in form %}
+            <div class="form-group">
+                <label class="nav-label" style="margin-bottom: 0.5rem; display: block;" for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                {% if field.help_text %}
+                    <p style="color: var(--text-muted); font-size: 0.75rem; margin-top: -1rem; margin-bottom: 1.5rem;">{{ field.help_text }}</p>
+                {% endif %}
+                {% for error in field.errors %}
+                    <div style="color: var(--urgent); font-size: 0.8rem; margin-top: -1rem; margin-bottom: 1.5rem;">{{ error }}</div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+
+        <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+            <button type="submit" class="btn btn-primary" style="flex: 1; justify-content: center;">
+                {% if object %}Update Milestone{% else %}Initialize Task{% endif %}
+            </button>
+            <a href="{% url 'task-list' %}" class="btn" style="background: var(--surface); color: var(--text-main); border: 1px solid var(--border);">Cancel</a>
+        </div>
+    </form>
 </div>
 
-</body>
-</html>
+{% endblock %}

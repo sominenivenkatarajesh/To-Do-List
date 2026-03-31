@@ -11,7 +11,11 @@ class TaskListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        tasks = Task.objects.all()
         context["categories"] = Category.objects.all()
+        context["total_count"] = tasks.count()
+        context["completed_count"] = tasks.filter(completed=True).count()
+        context["pending_count"] = tasks.filter(completed=False).count()
         return context
 
 
