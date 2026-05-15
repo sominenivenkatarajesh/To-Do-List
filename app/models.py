@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Category(models.Model):
@@ -21,6 +22,7 @@ class Task(models.Model):
     completed = models.BooleanField(default=False)
     priority = models.CharField(max_length=10, choices=PRIORITY_CHOICES, default='medium')
     due_date = models.DateField(null=True, blank=True)
+    due_time = models.TimeField(null=True, blank=True)
 
     category = models.ForeignKey(
         Category,

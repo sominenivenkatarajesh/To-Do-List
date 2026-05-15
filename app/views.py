@@ -1,7 +1,8 @@
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
+from django.shortcuts import redirect
 from .models import Task, Category
-
+from .forms import TaskForm
 
 
 class TaskListView(ListView):
@@ -21,14 +22,14 @@ class TaskListView(ListView):
 
 class TaskCreateView(CreateView):
     model = Task
-    fields = "__all__"
+    form_class = TaskForm
     template_name = "task_form.html"
     success_url = reverse_lazy("task-list")
 
 
 class TaskUpdateView(UpdateView):
     model = Task
-    fields = "__all__"
+    form_class = TaskForm
     template_name = "task_form.html"
     success_url = reverse_lazy("task-list")
 
@@ -39,7 +40,6 @@ class TaskDeleteView(DeleteView):
     success_url = reverse_lazy("task-list")
 
 
-
 class CategoryCreateView(CreateView):
     model = Category
     fields = ["name"]
@@ -48,6 +48,6 @@ class CategoryCreateView(CreateView):
 
 
 class CategoryDeleteView(DeleteView):
-    model = Category
+    model = Task
     template_name = "task_confirm_delete.html"
     success_url = reverse_lazy("task-list")
