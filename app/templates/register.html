@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div style="display: flex; align-items: center; justify-content: center; min-height: 75vh;">
+    <div class="form-card" style="width: 100%; max-width: 480px; backdrop-filter: blur(20px);">
+        <div style="text-align: center; margin-bottom: 2.5rem;">
+            <div style="display: inline-flex; align-items: center; justify-content: center; width: 64px; height: 64px; background: rgba(99, 102, 241, 0.1); border-radius: var(--radius-lg); border: 1px solid rgba(99, 102, 241, 0.2); margin-bottom: 1.5rem;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="filter: drop-shadow(0 4px 8px rgba(99, 102, 241, 0.3));"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M8.5 3a4 4 0 1 0 0 8 4 4 0 1 0 0-8zM20 8v6M23 11h-6"/></svg>
+            </div>
+            <h2 style="font-family: var(--font-header); font-size: 2rem; font-weight: 700; background: linear-gradient(135deg, #fff 0%, #6366f1 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">Create account</h2>
+            <p style="color: var(--text-dim); font-size: 0.9rem; margin-top: 0.5rem;">Join ZenTask to organize your projects.</p>
+        </div>
+
+        {% if form.errors %}
+        <div style="background: rgba(244, 63, 94, 0.1); border: 1px solid rgba(244, 63, 94, 0.2); padding: 1rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; color: var(--urgent); font-size: 0.85rem; line-height: 1.4;">
+            {% for field in form %}
+                {% if field.errors %}
+                    <strong>{{ field.label }}:</strong> {{ field.errors|striptags }}<br>
+                {% endif %}
+            {% endfor %}
+            {% if form.non_field_errors %}
+                {{ form.non_field_errors|striptags }}
+            {% endif %}
+        </div>
+        {% endif %}
+
+        <form method="post" action="{% url 'register' %}">
+            {% csrf_token %}
+            {% for field in form %}
+            <div>
+                <label for="{{ field.id_for_label }}" style="display: block; font-size: 0.8rem; font-weight: 600; color: var(--text-dim); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em;">{{ field.label }}</label>
+                {{ field }}
+                {% if field.help_text %}
+                <p style="color: var(--text-muted); font-size: 0.75rem; margin-top: -1rem; margin-bottom: 1.5rem; line-height: 1.4;">{{ field.help_text|safe }}</p>
+                {% endif %}
+            </div>
+            {% endfor %}
+
+            <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 1rem; margin-top: 1rem;">
+                Get Started
+            </button>
+        </form>
+
+        <div style="text-align: center; margin-top: 2rem; font-size: 0.85rem; color: var(--text-dim);">
+            Already have an account? <a href="{% url 'login' %}" style="color: var(--primary); text-decoration: none; font-weight: 600; transition: var(--transition);">Sign In</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

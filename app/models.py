@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 
 
 class Category(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="categories", null=True, blank=True)
     name = models.CharField(max_length=100)
 
     def __str__(self):
@@ -17,6 +18,7 @@ class Task(models.Model):
         ('urgent', 'Urgent'),
     ]
 
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="tasks", null=True, blank=True)
     title = models.CharField(max_length=200)
     description = models.TextField(blank=True)
     completed = models.BooleanField(default=False)

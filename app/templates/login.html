@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div style="display: flex; align-items: center; justify-content: center; min-height: 75vh;">
+    <div class="form-card" style="width: 100%; max-width: 480px; backdrop-filter: blur(20px);">
+        <div style="text-align: center; margin-bottom: 2.5rem;">
+            <div style="display: inline-flex; align-items: center; justify-content: center; width: 64px; height: 64px; background: rgba(99, 102, 241, 0.1); border-radius: var(--radius-lg); border: 1px solid rgba(99, 102, 241, 0.2); margin-bottom: 1.5rem;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="filter: drop-shadow(0 4px 8px rgba(99, 102, 241, 0.3));"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            </div>
+            <h2 style="font-family: var(--font-header); font-size: 2rem; font-weight: 700; background: linear-gradient(135deg, #fff 0%, #6366f1 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">Welcome back</h2>
+            <p style="color: var(--text-dim); font-size: 0.9rem; margin-top: 0.5rem;">Access your precision task workflow.</p>
+        </div>
+
+        {% if form.errors %}
+        <div style="background: rgba(244, 63, 94, 0.1); border: 1px solid rgba(244, 63, 94, 0.2); padding: 1rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; color: var(--urgent); font-size: 0.85rem; line-height: 1.4;">
+            Your username and password didn't match. Please try again.
+        </div>
+        {% endif %}
+
+        <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            <div>
+                <label for="id_username" style="display: block; font-size: 0.8rem; font-weight: 600; color: var(--text-dim); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em;">Username</label>
+                <input type="text" name="username" autofocus required id="id_username" placeholder="Enter your username">
+            </div>
+
+            <div>
+                <label for="id_password" style="display: block; font-size: 0.8rem; font-weight: 600; color: var(--text-dim); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em;">Password</label>
+                <input type="password" name="password" required id="id_password" placeholder="••••••••">
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 1rem; margin-top: 1rem;">
+                Sign In
+            </button>
+        </form>
+
+        <div style="text-align: center; margin-top: 2rem; font-size: 0.85rem; color: var(--text-dim);">
+            Don't have an account? <a href="{% url 'register' %}" style="color: var(--primary); text-decoration: none; font-weight: 600; transition: var(--transition);">Create account</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

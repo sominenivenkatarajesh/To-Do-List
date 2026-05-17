@@ -132,3 +132,8 @@ DEFAULT_AUTO_FIELD ='django.db.models.BigAutoField'
 # Email Configuration (Console backend for testing)
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_HOST_USER = 'notifications@zentask.com'
+
+# Authentication Configuration
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'task-list'
+LOGOUT_REDIRECT_URL = 'login'
