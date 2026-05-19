@@ -26,17 +26,64 @@
 
         <form method="post" action="{% url 'register' %}">
             {% csrf_token %}
-            {% for field in form %}
-            <div>
-                <label for="{{ field.id_for_label }}" style="display: block; font-size: 0.8rem; font-weight: 600; color: var(--text-dim); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em;">{{ field.label }}</label>
-                {{ field }}
-                {% if field.help_text %}
-                <p style="color: var(--text-muted); font-size: 0.75rem; margin-top: -1rem; margin-bottom: 1.5rem; line-height: 1.4;">{{ field.help_text|safe }}</p>
+            
+            <!-- Username Field -->
+            <div class="input-group">
+                <label for="{{ form.username.id_for_label }}" class="form-label">Username</label>
+                <div class="input-wrapper">
+                    {{ form.username }}
+                    <span class="input-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    </span>
+                </div>
+                {% if form.username.help_text %}
+                <span class="field-help">{{ form.username.help_text }}</span>
                 {% endif %}
             </div>
-            {% endfor %}
 
-            <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 1rem; margin-top: 1rem;">
+            <!-- Email Field -->
+            <div class="input-group">
+                <label for="{{ form.email.id_for_label }}" class="form-label">Email Address</label>
+                <div class="input-wrapper">
+                    {{ form.email }}
+                    <span class="input-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    </span>
+                </div>
+                {% if form.email.help_text %}
+                <span class="field-help">{{ form.email.help_text }}</span>
+                {% endif %}
+            </div>
+
+            <!-- Password Field -->
+            <div class="input-group">
+                <label for="{{ form.password1.id_for_label }}" class="form-label">Password</label>
+                <div class="input-wrapper">
+                    {{ form.password1 }}
+                    <span class="input-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    </span>
+                </div>
+                {% if form.password1.help_text %}
+                <span class="field-help">{{ form.password1.help_text }}</span>
+                {% endif %}
+            </div>
+
+            <!-- Confirm Password Field -->
+            <div class="input-group">
+                <label for="{{ form.password2.id_for_label }}" class="form-label">Confirm Password</label>
+                <div class="input-wrapper">
+                    {{ form.password2 }}
+                    <span class="input-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    </span>
+                </div>
+                {% if form.password2.help_text %}
+                <span class="field-help">{{ form.password2.help_text }}</span>
+                {% endif %}
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 1rem; margin-top: 1.5rem;">
                 Get Started
             </button>
         </form>

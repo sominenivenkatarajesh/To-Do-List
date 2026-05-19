@@ -6,7 +6,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 from django.db.models import Q
 from .models import Task, Category
-from .forms import TaskForm
+from .forms import TaskForm, CustomRegisterForm
 
 
 class TaskListView(LoginRequiredMixin, ListView):
@@ -88,7 +88,7 @@ class CategoryDeleteView(LoginRequiredMixin, DeleteView):
 
 
 class RegisterView(CreateView):
-    form_class = UserCreationForm
+    form_class = CustomRegisterForm
     template_name = "register.html"
     success_url = reverse_lazy("task-list")
 

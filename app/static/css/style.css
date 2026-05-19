@@ -272,11 +272,71 @@ header {
     border-radius: var(--radius-lg);
     padding: 3rem;
     margin: 0 auto;
+    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.3);
+    transition: var(--transition);
+}
+
+.form-card:hover {
+    border-color: rgba(99, 102, 241, 0.2);
+    box-shadow: 0 30px 60px -20px rgba(99, 102, 241, 0.08), 0 20px 40px -15px rgba(0, 0, 0, 0.35);
+}
+
+.input-group {
+    margin-bottom: 1.5rem;
+    position: relative;
+    text-align: left;
+}
+
+.form-label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-dim);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-wrapper input, .input-wrapper select {
+    padding-left: 3rem;
+    margin-bottom: 0;
+}
+
+.input-icon {
+    position: absolute;
+    left: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    transition: var(--transition);
+    pointer-events: none;
+    z-index: 5;
+}
+
+.input-wrapper input:focus ~ .input-icon,
+.input-wrapper select:focus ~ .input-icon {
+    color: var(--primary);
+    filter: drop-shadow(0 0 4px rgba(99, 102, 241, 0.3));
+}
+
+.field-help {
+    display: block;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    margin-top: 0.4rem;
+    line-height: 1.4;
 }
 
 input, select, textarea {
     width: 100%;
-    background: rgba(255, 255, 255, 0.03);
+    background: rgba(255, 255, 255, 0.02);
     border: 1px solid var(--border);
     padding: 1rem 1.2rem;
     border-radius: var(--radius-md);
@@ -292,10 +352,10 @@ select option {
     padding: 10px;
 }
 
-input:focus {
+input:focus, select:focus, textarea:focus {
     outline: none;
     border-color: var(--primary);
-    background: rgba(255, 255, 255, 0.06);
+    background: rgba(255, 255, 255, 0.05);
     box-shadow: 0 0 0 4px var(--primary-dim);
 }
 
